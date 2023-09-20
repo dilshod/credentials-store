@@ -1,0 +1,28 @@
+{
+  "name": "credentials",
+  "version": "0.0.1",
+  "description": "Encrypted YAML based configurations inspired by Ruby On Rails credentials.",
+  "main": "index.js",
+  "author": "Dilshod Temirkhodjaev <tdilshod@gmail.com>",
+  "license": "MIT",
+  "keywords": [],
+  "homepage": "https://github.com/dilshod/credentials",
+  "bin": "dist/edit.js",
+  "scripts": {
+    "test": "mocha dist/index.test.js"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.6",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^20.5.9",
+    "bun-types": "latest",
+    "chai": "^4.3.8",
+    "mocha": "^10.2.0"
+  },
+  "dependencies": {
+    "yaml": "^2.3.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  }
+}
