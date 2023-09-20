@@ -1,5 +1,5 @@
 {
-  "name": "credentials",
+  "name": "credentials-store",
   "version": "0.0.1",
   "description": "Encrypted YAML based configurations inspired by Ruby On Rails credentials.",
   "main": "index.js",
@@ -7,7 +7,9 @@
   "license": "MIT",
   "keywords": [],
   "homepage": "https://github.com/dilshod/credentials",
-  "bin": "dist/edit.js",
+  "bin": {
+    "credentials-store": "dist/edit.js"
+  },
   "scripts": {
     "test": "mocha dist/index.test.js"
   },
