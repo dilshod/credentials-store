@@ -2,7 +2,7 @@
   "name": "credentials-store",
   "version": "0.0.2",
   "description": "Encrypted YAML based configurations inspired by Ruby On Rails credentials.",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "author": "Dilshod Temirkhodjaev <tdilshod@gmail.com>",
   "license": "MIT",
   "keywords": [],

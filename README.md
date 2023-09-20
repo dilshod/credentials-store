@@ -6,7 +6,7 @@ It provides a secure way to manage and edit sensitive data stored in encrypted f
 
 ## Features
 
-- **File Encryption**: Encrypt and decrypt files using the AES-256-GCM encryption algorithm.
+- **File Encryption**: Encrypt and decrypt files using the AES-256-CBC encryption algorithm.
 - **Key Management**: Automatically generate and manage encryption keys securely.
 - **YAML Support**: Works with YAML format for storing structured data.
 - **Environment-Specific Configuration**: Supports environment-specific configuration files (e.g., `development`, `production`) for credentials.
@@ -30,7 +30,7 @@ npx credentials-store
 or
 
 ```bash
-npx credentials production
+npx credentials-store production
 ```
 
 ## Reading Encrypted Files

@@ -12,26 +12,30 @@ export class EncryptedFile {
   constructor(keyFilePath: string) {
     if (!fs.existsSync(keyFilePath)) {
       this.secretKey = crypto.randomBytes(32);
-      fs.writeFileSync(keyFilePath, this.secretKey);
+      fs.writeFileSync(keyFilePath, this.secretKey.toString('hex'));
     } else
-      this.secretKey = fs.readFileSync(keyFilePath);
+      this.secretKey = Buffer.from(fs.readFileSync(keyFilePath, 'utf8'), 'hex');
   }
 
   private encrypt(data: string): string {
+    // as of bun version 1.0.2, there is a bug with GCM algorithm
+    const algorithm = 'cbc' as 'cbc' | 'gcm';
+
     // Generate a random IV for each encryption
     const iv = crypto.randomBytes(16);
 
-    const cipher = crypto.createCipheriv('aes-256-gcm', this.secretKey, iv);
+    const cipher = crypto.createCipheriv(`aes-256-${algorithm}`, this.secretKey, iv);
     const encrypted = cipher.update(data, 'utf8', 'base64') + cipher.final('base64');
-    const authTag = cipher.getAuthTag().toString('base64');
-    return iv.toString('base64') + ':' + encrypted + ':' + authTag;
+    const authTag = algorithm === 'gcm' ? (cipher as crypto.CipherGCM).getAuthTag().toString('base64') : '';
+    return algorithm + ':' + iv.toString('base64') + ':' + encrypted + ':' + authTag;
   }
 
   private decrypt(encryptedText: string): string {
-    const [ivBase64, encryptedData, authTag] = encryptedText.split(':');
+    const [algorithm, ivBase64, encryptedData, authTag] = encryptedText.split(':');
     const iv = Buffer.from(ivBase64, 'base64');
-    const decipher = crypto.createDecipheriv('aes-256-gcm', this.secretKey, iv);
-    decipher.setAuthTag(Buffer.from(authTag, 'base64'));
+    const decipher = crypto.createDecipheriv(`aes-256-${algorithm}`, this.secretKey, iv);
+    if (algorithm === 'gcm')
+      (decipher as crypto.DecipherGCM).setAuthTag(Buffer.from(authTag, 'base64'));
     const decrypted = decipher.update(encryptedData, 'base64', 'utf8') + decipher.final('utf8');
     return decrypted;
   }
