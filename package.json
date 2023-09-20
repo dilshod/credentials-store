@@ -1,6 +1,6 @@
 {
   "name": "credentials-store",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Encrypted YAML based configurations inspired by Ruby On Rails credentials.",
   "main": "index.js",
   "author": "Dilshod Temirkhodjaev <tdilshod@gmail.com>",
