@@ -16,7 +16,7 @@ It provides a secure way to manage and edit sensitive data stored in encrypted f
 Install the package using npm:
 
 ```bash
-npm install credentials --save
+npm install credentials-store --save
 ```
 
 ## Editing Encrypted Files
@@ -24,7 +24,7 @@ npm install credentials --save
 Edit encrypted credentials for a specific environment using your system's default text editor.
 
 ```bash
-npx credentials
+npx credentials-store
 ```
 
 or
@@ -36,7 +36,7 @@ npx credentials production
 ## Reading Encrypted Files
 
 ```typescript
-import { credentials } from 'credentials';
+import { credentials } from 'credentials-store';
 
 const config = credentials(); // Read and parse the default credentials file
 ```

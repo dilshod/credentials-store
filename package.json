@@ -6,7 +6,7 @@
   "author": "Dilshod Temirkhodjaev <tdilshod@gmail.com>",
   "license": "MIT",
   "keywords": [],
-  "homepage": "https://github.com/dilshod/credentials",
+  "homepage": "https://github.com/dilshod/credentials-store",
   "bin": {
     "credentials-store": "dist/edit.js"
   },
